@@ -1,0 +1,48 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<h1>비품 위치</h1>
+
+<div class="location-buttons">
+  {% for location in locations %}
+    <a
+      class="location-button {% if selected_location_id == location.id %}active{% endif %}"
+      href="{{ url_for('map_page', location_id=location.id) }}"
+    >
+      {{ location.name }}
+    </a>
+  {% endfor %}
+</div>
+
+{% if selected_location %}
+  <section>
+    <h2>{{ selected_location.name }}</h2>
+    <p>{{ selected_location.building }} · {{ selected_location.floor }} · {{ selected_location.room_name }}</p>
+
+    <div class="cabinet-grid">
+      {% for cabinet_number in range(1, 7) %}
+        <div class="cabinet-card">
+          <h3>{{ cabinet_number }}번 시약장</h3>
+          <ul>
+            {% for item in items if item.cabinet_number == cabinet_number %}
+              <li>
+                <a href="{{ url_for('item_detail', item_id=item.id) }}">
+                  {{ item.name }}
+                </a>
+                <span class="badge badge-{{ item.remaining_level }}">
+                  {{ item.remaining_level }}
+                </span>
+              </li>
+            {% else %}
+              <li class="empty">등록된 비품 없음</li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+{% else %}
+  <p>위치를 선택하면 해당 위치의 시약장과 비품을 확인할 수 있습니다.</p>
+{% endif %}
+{% endblock %}

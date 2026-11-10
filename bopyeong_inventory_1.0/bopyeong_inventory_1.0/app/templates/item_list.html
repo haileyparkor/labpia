@@ -1,0 +1,60 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<h1>비품 검색</h1>
+
+<form method="get" action="{{ url_for('item_list') }}" class="filter-form">
+  <input
+    type="search"
+    name="q"
+    value="{{ query }}"
+    placeholder="비품 이름, 분류, 설명 검색"
+  >
+
+  <select name="location_id">
+    <option value="">전체 위치</option>
+    {% for location in locations %}
+      <option
+        value="{{ location.id }}"
+        {% if selected_location_id == location.id %}selected{% endif %}
+      >
+        {{ location.name }}
+      </option>
+    {% endfor %}
+  </select>
+
+  <select name="remaining">
+    <option value="">전체 잔량</option>
+    {% for level in remaining_levels %}
+      <option
+        value="{{ level }}"
+        {% if selected_remaining == level %}selected{% endif %}
+      >
+        {{ level }}
+      </option>
+    {% endfor %}
+  </select>
+
+  <button type="submit">검색</button>
+</form>
+
+<p>{{ items|length }}개의 비품이 검색되었습니다.</p>
+
+<ul class="item-grid">
+  {% for item in items %}
+    <li class="item-card">
+      <a href="{{ url_for('item_detail', item_id=item.id) }}">
+        <strong>{{ item.name }}</strong>
+        <span>{{ item.category }}</span>
+        <span>{{ item.location_name }} · {{ item.cabinet_number }}번 시약장</span>
+        <span class="badge badge-{{ item.remaining_level }}">
+          잔량: {{ item.remaining_level }}
+        </span>
+      </a>
+    </li>
+  {% else %}
+    <li>검색 결과가 없습니다.</li>
+  {% endfor %}
+</ul>
+{% endblock %}
