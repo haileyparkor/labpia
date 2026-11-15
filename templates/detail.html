@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}{{ supply.name }} · 보평고 비품관리 시스템{% endblock %}
+
+{% block content %}
+<p class="breadcrumb">
+  <a href="{{ url_for('search') }}">비품 검색</a> /
+  <a href="{{ url_for('location', lab=supply.location) }}">{{ supply.location }}</a>
+</p>
+
+<article class="detail">
+  <span class="badge">{{ supply.category }}</span>
+  <h1>{{ supply.name }}</h1>
+  <p class="detail-desc">{{ supply.description }}</p>
+
+  <dl class="detail-list">
+    <div>
+      <dt>비품 이름</dt>
+      <dd>{{ supply.name }}</dd>
+    </div>
+    <div>
+      <dt>분류</dt>
+      <dd>{{ supply.category }}</dd>
+    </div>
+    <div>
+      <dt>설명</dt>
+      <dd>{{ supply.description }}</dd>
+    </div>
+    <div>
+      <dt>보관 위치</dt>
+      <dd>{{ supply.location }}</dd>
+    </div>
+    <div>
+      <dt>시약장 번호</dt>
+      <dd>{{ supply.cabinet_number }}번 시약장</dd>
+    </div>
+    <div>
+      <dt>잔량</dt>
+      <dd class="quantity quantity-{{ supply.quantity }}">{{ supply.quantity }}</dd>
+    </div>
+    <div>
+      <dt>상태</dt>
+      <dd><span class="status">{{ supply.status }}</span></dd>
+    </div>
+  </dl>
+</article>
+
+<a class="button button-outline" href="{{ url_for('search') }}">목록으로 돌아가기</a>
+{% endblock %}
