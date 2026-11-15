@@ -5,8 +5,8 @@
 | 담당 | 사람 | 파일 |
 |---|---|---|
 | 리드 | haileyparkor | `app.py`, `db.py`, `schema.sql`, `base.html`, `style.css` |
-| A | cslfdlbia | `reagents.py`, `templates/reagents/*` |
-| B | chloehj-png | `qr.py`, `templates/qr/*`, `static/js/*`, `static/css/qr.css` |
+| A | chloehj-png | `reagents.py`, `templates/reagents/*` |
+| B | cslfdlbia | `qr.py`, `templates/qr/*`, `static/js/*`, `static/css/qr.css` |
 
 ## URL
 
