@@ -1,0 +1,4 @@
+name,category,description,location,cabinet_number,quantity,status,cas_number,concentration,volume,opened_at,expires_at,hazard_class,rfid_epc
+에탄올 500mL,시약,소독과 세척에 쓰는 에탄올입니다.,보일랩,3,보통,사용 가능,64-17-5,95%,500mL,2026-11-15,2027-11-15,3,
+페놀프탈레인 용액,시약,산과 염기를 구분하는 지시약입니다.,보일랩,3,적음,사용 가능,77-09-8,1%,100mL,,,,
+염화나트륨,시약,실험용 고체 시약입니다.,보일랩,2,많음,사용 가능,7647-14-5,,500g,,,,

@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}비품 검색 · 보평고 비품관리 시스템{% endblock %}
+
+{% block content %}
+<h1 class="page-title">비품 검색</h1>
+
+<!-- 검색 조건은 주소 뒤에 붙어서 결과를 다시 계산한다. -->
+<form class="filter-form" action="{{ url_for('search') }}" method="get">
+  <div class="field field-grow">
+    <label for="keyword">검색어</label>
+    <input
+      id="keyword"
+      type="text"
+      name="keyword"
+      value="{{ keyword }}"
+      placeholder="비품 이름, 분류, 설명"
+    >
+  </div>
+
+  <div class="field">
+    <label for="location">위치</label>
+    <select id="location" name="location">
+      <option value="">전체</option>
+      {% for item in locations %}
+        <option value="{{ item }}" {% if item == location %}selected{% endif %}>{{ item }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="field">
+    <label for="quantity">잔량</label>
+    <select id="quantity" name="quantity">
+      <option value="">전체</option>
+      {% for item in quantities %}
+        <option value="{{ item }}" {% if item == quantity %}selected{% endif %}>{{ item }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <button type="submit" class="button">검색</button>
+</form>
+
+<p class="result-count">검색 결과 {{ supplies|length }}개</p>
+
+{% if supplies %}
+  <div class="card-grid">
+    {% for supply in supplies %}
+      <a class="card card-link" href="{{ url_for('supply_detail', supply_id=supply.id) }}">
+        <span class="badge">{{ supply.category }}</span>
+        <h2>{{ supply.name }}</h2>
+        <p class="card-desc">{{ supply.description }}</p>
+        <dl class="card-meta">
+          <div>
+            <dt>위치</dt>
+            <dd>{{ supply.location }} {{ supply.cabinet_number }}번 시약장</dd>
+          </div>
+          <div>
+            <dt>잔량</dt>
+            <dd class="quantity quantity-{{ supply.quantity }}">{{ supply.quantity }}</dd>
+          </div>
+        </dl>
+      </a>
+    {% endfor %}
+  </div>
+{% else %}
+  <p class="empty">조건에 맞는 비품이 없습니다. 검색어나 필터를 바꿔 보세요.</p>
+{% endif %}
+{% endblock %}
