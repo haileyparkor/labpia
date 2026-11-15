@@ -19,9 +19,9 @@ python app.py
 | `app.py` | Flask 앱, 기존 라우트 | 리드 |
 | `db.py` | DB 연결·초기화·코드 정규화 | 리드 |
 | `schema.sql` | DB 스키마 | 리드 |
-| `reagents.py` | CSV 업로드 | A |
-| `qr.py` | QR/RFID | B |
-| `docs/team-contract.md` | URL·DB·CSV 계약 | 리드 |
+| `reagents.py` | CSV 업로드 | A (chloehj-png) |
+| `qr.py` | QR/RFID | B (cslfdlbia) |
+| `docs/` | 팀 문서 | 리드 |
 
 ## 협업 규칙
 
@@ -30,4 +30,12 @@ python app.py
 - PR 전 `bash scripts/check.sh`
 - `supply.db`, `.venv/`, `__pycache__/` 는 커밋하지 않음
 
-자세한 내용은 [docs/team-contract.md](docs/team-contract.md) 를 참고하세요.
+## 문서
+
+- 전체 문서 지도: [docs/README.md](docs/README.md)
+- 처음 시작: [docs/onboarding.md](docs/onboarding.md)
+- 실행 환경: [docs/setup.md](docs/setup.md)
+- 작업 규칙: [docs/workflow.md](docs/workflow.md)
+- A 기능 명세: [docs/features/reagent-csv.md](docs/features/reagent-csv.md)
+- B 기능 명세: [docs/features/qr-rfid.md](docs/features/qr-rfid.md)
+- 기여 안내: [CONTRIBUTING.md](CONTRIBUTING.md)
